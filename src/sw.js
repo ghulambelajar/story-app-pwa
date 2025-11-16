@@ -70,7 +70,6 @@ registerRoute(
   })
 );
 
-// 4. PUSH NOTIFICATION (Kriteria 2)
 self.addEventListener("push", (event) => {
   console.log("Push event diterima!", event.data.text());
   const notificationData = event.data.json();

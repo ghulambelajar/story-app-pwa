@@ -143,7 +143,6 @@ class HomePage {
 
   #showLoginSuccessToast() {
     const message = localStorage.getItem("login_success_message");
-    // -------------------------
 
     if (message) {
       Swal.fire({
