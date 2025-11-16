@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon.png" />
+    <title>My Story App</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <script type="module" src="/src/scripts/index.js"></script>
+  </head>
+  <body>
+    <div id="loading-indicator" class="loading-indicator hidden"></div>
+    <a href="#main-content" class="skip-link" tabindex="-1">Menuju ke konten</a>
+    <header>
+      <div class="main-header container">
+        <a class="brand-name" href="#/">App</a>
+        <nav id="navigation-drawer" class="navigation-drawer">
+          <ul id="nav-list" class="nav-list"></ul>
+        </nav>
+        <button id="drawer-button" class="drawer-button">☰</button>
+      </div>
+    </header>
+
+    <main id="main-content" class="main-content" tabindex="-1"></main>
+  </body>
+</html>
