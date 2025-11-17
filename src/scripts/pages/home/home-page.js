@@ -10,17 +10,19 @@ class HomePage {
     return `
       <div class="page-title container">
         <h1>Dasbor Cerita</h1>
+        <p class="page-subtitle">Jelajahi cerita dari seluruh dunia</p>
       </div>
       <div class="home-content container"> 
         <div class="stories-container">
           <div class="stories-header">
             <h2>Daftar Cerita</h2>
+            <div class="stories-count" id="stories-count"></div>
           </div>
           <div id="stories-list" class="stories-list"></div>
         </div>
         <div class="map-container">
-          <h2>Peta Cerita</h2>
-          <div id="story-map" style="height: 400px;"></div>
+          <h2><i class="fa-solid fa-map-location-dot"></i> Peta Cerita</h2>
+          <div id="story-map"></div>
         </div>
       </div>
     `;
@@ -53,13 +55,17 @@ class HomePage {
       const savedStoryIds = new Set(bookmarkedStories.map((story) => story.id));
       const stories = await getAllStories();
       const storiesListElement = document.querySelector("#stories-list");
+      const storiesCount = document.querySelector("#stories-count");
+
+      storiesCount.innerHTML = `<span class="badge">${stories.length} Cerita</span>`;
+
       let storiesHTML = "";
 
       stories.forEach((story) => {
         const isSaved = savedStoryIds.has(story.id);
 
         const saveButtonHtml = isSaved
-          ? `<button class="btn btn-save" data-id="${story.id}" disabled>
+          ? `<button class="btn btn-save btn-saved" data-id="${story.id}" disabled>
                <i class="fa-solid fa-check" aria-hidden="true"></i> Tersimpan
              </button>`
           : `<button class="btn btn-save" data-id="${story.id}">
@@ -68,13 +74,18 @@ class HomePage {
 
         storiesHTML += `
           <div class="story-item">
-            <img src="${story.photoUrl}" alt="Cerita oleh ${story.name}">
-            <h3>${story.name}</h3>
-            <small class="story-date">${showFormattedDate(
-              story.createdAt
-            )}</small>
-            <p>${story.description}</p>
-            
+            <img src="${story.photoUrl}" alt="Cerita oleh ${
+          story.name
+        }" loading="lazy">
+            <div class="story-content">
+              <h3>${story.name}</h3>
+              <small class="story-date">
+                <i class="fa-regular fa-clock"></i> ${showFormattedDate(
+                  story.createdAt
+                )}
+              </small>
+              <p>${story.description}</p>
+            </div>
             ${saveButtonHtml}
           </div>
         `;
@@ -131,6 +142,7 @@ class HomePage {
           });
 
           buttonElement.disabled = true;
+          buttonElement.classList.add("btn-saved");
           buttonElement.innerHTML = `
             <i class="fa-solid fa-check" aria-hidden="true"></i> Tersimpan
           `;

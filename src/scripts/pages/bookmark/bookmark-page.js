@@ -12,6 +12,7 @@ class BookmarkPage {
         <div class="stories-container">
           <div class="stories-header">
             <h2>Cerita yang Kamu Simpan</h2>
+            <div class="stories-count" id="stories-count"></div>
           </div>
           <div id="stories-list" class="stories-list"></div>
         </div>
@@ -27,6 +28,7 @@ class BookmarkPage {
     const loadingIndicator = document.querySelector("#loading-indicator");
     loadingIndicator.classList.remove("hidden");
     const storiesListElement = document.querySelector("#stories-list");
+    const storiesCount = document.querySelector("#stories-count");
     storiesListElement.innerHTML = "";
 
     try {
@@ -34,24 +36,34 @@ class BookmarkPage {
 
       if (stories.length === 0) {
         storiesListElement.innerHTML = `
-          <p class="stories-list__empty-message">
-            Kamu belum menyimpan cerita apapun.
-          </p>
+          <div class="empty-state">
+            <i class="fa-solid fa-bookmark fa-3x"></i>
+            <p class="empty-message">Kamu belum menyimpan cerita apapun.</p>
+            <a href="#/home" class="btn btn-primary">Lihat Semua Cerita</a>
+          </div>
         `;
+        storiesCount.textContent = "";
         return;
       }
+
+      storiesCount.innerHTML = `<span class="badge">${stories.length} Cerita Tersimpan</span>`;
 
       let storiesHTML = "";
       stories.forEach((story) => {
         storiesHTML += `
           <div class="story-item">
-            <img src="${story.photoUrl}" alt="Cerita oleh ${story.name}">
-            <h3>${story.name}</h3>
-            <small class="story-date">${showFormattedDate(
-              story.createdAt
-            )}</small>
-            <p>${story.description}</p>
-            
+            <img src="${story.photoUrl}" alt="Cerita oleh ${
+          story.name
+        }" loading="lazy">
+            <div class="story-content">
+              <h3>${story.name}</h3>
+              <small class="story-date">
+                <i class="fa-regular fa-clock"></i> ${showFormattedDate(
+                  story.createdAt
+                )}
+              </small>
+              <p>${story.description}</p>
+            </div>
             <button class="btn btn-delete" data-id="${story.id}">
               <i class="fa-solid fa-trash" aria-hidden="true"></i> Hapus
             </button>
@@ -76,7 +88,7 @@ class BookmarkPage {
     const deleteButtons = document.querySelectorAll(".btn-delete");
     deleteButtons.forEach((button) => {
       button.addEventListener("click", async (event) => {
-        const storyId = event.target.dataset.id;
+        const storyId = event.currentTarget.dataset.id;
 
         try {
           const result = await Swal.fire({

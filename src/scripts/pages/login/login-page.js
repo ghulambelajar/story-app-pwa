@@ -6,20 +6,43 @@ import Swal from "sweetalert2";
 class LoginPage {
   async render() {
     return `
-      <div class="form-container">
-        <h2>Login</h2>
-        <form id="loginForm">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-          </div>
-          <button type="submit" class="btn" id="submitButton">Login</button>
-        </form>
-        <p class="mt-3">Belum punya akun? <a href="#/register">Daftar di sini</a></p>
+      <div class="form-wrapper">
+        <div class="form-container">
+          <h2><i class="fa-solid fa-right-to-bracket"></i> Login</h2>
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="email">
+                <i class="fa-solid fa-envelope"></i> Email
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="nama@email.com"
+                required
+              >
+            </div>
+            <div class="form-group">
+              <label for="password">
+                <i class="fa-solid fa-lock"></i> Password
+              </label>
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                placeholder="Masukkan password"
+                required
+              >
+            </div>
+            <button type="submit" class="btn" id="submitButton">
+              <i class="fa-solid fa-right-to-bracket"></i> Login
+            </button>
+          </form>
+          <p class="mt-3">
+            Belum punya akun? 
+            <a href="#/register">Daftar di sini</a>
+          </p>
+        </div>
       </div>
     `;
   }
@@ -56,6 +79,7 @@ class LoginPage {
           title: "Login Gagal",
           text: error.message,
           icon: "error",
+          confirmButtonColor: "#667eea",
         });
       } finally {
         loadingIndicator.classList.add("hidden");
