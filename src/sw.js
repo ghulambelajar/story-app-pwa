@@ -175,14 +175,3 @@ self.addEventListener("activate", (event) => {
   console.log("[Service Worker] Activating Service Worker...");
   event.waitUntil(clients.claim());
 });
-
-// Offline fallback
-self.addEventListener("fetch", (event) => {
-  if (event.request.mode === "navigate") {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match("/");
-      })
-    );
-  }
-});
