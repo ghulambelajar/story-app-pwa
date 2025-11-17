@@ -1,74 +1,99 @@
 {
-  "name": "My Story App",
-  "short_name": "Story App",
-  "description": "Aplikasi PWA berbagi cerita.",
-  "start_url": "/index.html",
-  "scope": "/",
-  "id": "/",
+  "name": "My Story App - Progressive Web Application",
+  "short_name": "My Story App",
+  "description": "Aplikasi berbagi cerita dengan fitur PWA lengkap",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#007BFF",
+  "background_color": "#ffffff",
+  "theme_color": "#87CEEB",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "images/icons/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "images/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "images/icons/icon-48x48.png",
+      "src": "/images/icons/icon-48x48.png",
       "sizes": "48x48",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "images/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "images/icons/icon-72x72.png",
+      "src": "/images/icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "images/icons/icon-96x96.png",
+      "src": "/images/icons/icon-96x96.png",
       "sizes": "96x96",
       "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "shortcuts": [
+      "purpose": "any"
+    },
     {
-      "name": "Tambah Cerita Baru",
-      "short_name": "Baru",
-      "description": "Membuat cerita baru",
-      "url": "/#/add",
-      "icons": [
-        {
-          "src": "images/shortcut/shortcut-1.png",
-          "sizes": "256x256",
-          "type": "image/png"
-        }
-      ]
+      "src": "/images/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "screenshots": [
     {
-      "src": "images/screenshots/screenshot-1.png",
-      "sizes": "749x310",
+      "src": "/images/screenshots/screenshot-1.png",
+      "sizes": "864x673",
       "type": "image/png",
-      "form_factor": "wide"
+      "form_factor": "narrow",
+      "label": "Home Screen - Daftar Cerita"
     },
     {
-      "src": "images/screenshots/screenshot-2.png",
+      "src": "/images/screenshots/screenshot-2.png",
+      "sizes": "864x673",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tambah Cerita Baru"
+    },
+    {
+      "src": "/images/screenshots/screenshot-3.png",
       "sizes": "865x606",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "wide",
+      "label": "Dashboard Desktop View"
     }
-  ]
+  ],
+  "shortcuts": [
+    {
+      "name": "Tambah Cerita",
+      "short_name": "Tambah",
+      "description": "Buat cerita baru dengan cepat",
+      "url": "/#/add",
+      "icons": [
+        {
+          "src": "/images/icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Cerita Tersimpan",
+      "short_name": "Bookmark",
+      "description": "Lihat cerita yang kamu simpan",
+      "url": "/#/bookmark",
+      "icons": [
+        {
+          "src": "/images/icons/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "categories": ["social", "lifestyle"],
+  "prefer_related_applications": false
 }
