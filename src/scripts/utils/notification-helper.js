@@ -40,7 +40,20 @@ async function subscribe() {
     applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
   });
 
-  await subscribePushNotification(subscription);
+  // Format subscription data tanpa expirationTime
+  const subscriptionData = {
+    endpoint: subscription.endpoint,
+    keys: {
+      p256dh: btoa(
+        String.fromCharCode(...new Uint8Array(subscription.getKey("p256dh")))
+      ),
+      auth: btoa(
+        String.fromCharCode(...new Uint8Array(subscription.getKey("auth")))
+      ),
+    },
+  };
+
+  await subscribePushNotification(subscriptionData);
   console.log("Berhasil subscribe dan mengirim ke server.");
 }
 
@@ -60,9 +73,14 @@ async function unsubscribe() {
 }
 
 async function getSubscriptionStatus() {
-  const registration = await navigator.serviceWorker.ready;
-  const subscription = await registration.pushManager.getSubscription();
-  return !!subscription;
+  try {
+    const registration = await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.getSubscription();
+    return !!subscription;
+  } catch (error) {
+    console.warn("Error checking subscription:", error);
+    return false;
+  }
 }
 
 export {
